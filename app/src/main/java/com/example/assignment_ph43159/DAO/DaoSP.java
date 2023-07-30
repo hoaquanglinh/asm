@@ -30,7 +30,7 @@ public class DaoSP {
         ArrayList<SanPham> list = new ArrayList<>();
         SQLiteDatabase db = dbHelperSP.getWritableDatabase();
         try{
-            Cursor cursor = db.rawQuery("select * from sanpham", null);
+            Cursor cursor = db.rawQuery("select * from sanphamm", null);
             if(cursor.getCount()>0){
                 cursor.moveToFirst();
                 while (!cursor.isAfterLast()){
@@ -53,8 +53,8 @@ public class DaoSP {
         SQLiteDatabase db = dbHelperSP.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-//        long check = db.delete("sanpham", "tensp = ? OR tensp IS NULL", new String[]{""});
-        long check = db.delete("sanpham", "id = ?", new String[]{String.valueOf(id)});
+//        long check = db.delete("sanphamm", "tensp = ? OR tensp IS NULL", new String[]{""});
+        long check = db.delete("sanphamm", "id = ?", new String[]{String.valueOf(id)});
         if (check > 0){
             Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
         }else{
@@ -70,7 +70,7 @@ public class DaoSP {
         values.put("giasp", sp.getGiasp());
         values.put("soluong", sp.getSoluong());
 
-        long check = db.insert("sanpham", null, values);
+        long check = db.insert("sanphamm", null, values);
 
         if (check > 0)
             Toast.makeText(context, "Thêm thành công",
@@ -87,7 +87,7 @@ public class DaoSP {
         values.put("giasp", sp.getGiasp());
         values.put("soluong", sp.getSoluong());
 
-        long check = db.update("sanpham", values, "id = ?", new String[]{String.valueOf(sp.getId())});
+        long check = db.update("sanphamm", values, "id = ?", new String[]{String.valueOf(sp.getId())});
 
         if (check > 0)
             Toast.makeText(context, "Sửa thành công",
