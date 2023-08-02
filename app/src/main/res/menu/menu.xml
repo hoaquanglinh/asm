@@ -4,22 +4,22 @@
     tools:showIn="navigation_view">
     <item
         android:id="@+id/quanlysp"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/quanli"
         android:title="Quản lý sản phẩm"/>
     <item
         android:id="@+id/gioithieu"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/gioithieu"
         android:title="Giới thiệu"/>
     <group android:checkableBehavior="single">
         <item android:title="Khác">
             <menu>
                 <item
                     android:id="@+id/caidat"
-                    android:icon="@drawable/ic_launcher_background"
+                    android:icon="@drawable/caidat"
                     android:title="Cài đặt"/>
                 <item
                     android:id="@+id/dangxuat"
-                    android:icon="@drawable/ic_launcher_background"
+                    android:icon="@drawable/dangxuat"
                     android:title="Đăng xuất"/>
             </menu>
         </item>

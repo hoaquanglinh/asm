@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.assignment_ph43159.DataBase.DBHelperSP;
+import com.example.assignment_ph43159.Model.NguoiDung;
 import com.example.assignment_ph43159.Model.SanPham;
 
 import java.util.ArrayList;
@@ -47,6 +48,41 @@ public class DaoSP {
             Log.i(TAG,"Lỗi", e);
         }
         return list;
+    }
+
+    public ArrayList<NguoiDung> taikhoan(){
+        ArrayList<NguoiDung> list = new ArrayList<>();
+        SQLiteDatabase db = dbHelperSP.getWritableDatabase();
+        try{
+            Cursor cursor = db.rawQuery("select * from nguoidung", null);
+            if(cursor.getCount()>0){
+                cursor.moveToFirst();
+                while (!cursor.isAfterLast()){
+                    list.add(new NguoiDung(
+                            cursor.getInt(0),
+                            cursor.getString(1),
+                            cursor.getString(2),
+                            cursor.getString(3)
+                    ));
+                    cursor.moveToNext();
+                }
+            }
+        }catch (Exception e){
+            Log.i(TAG,"Lỗi", e);
+        }
+        return list;
+    }
+
+    public boolean themnd(NguoiDung nd){
+        SQLiteDatabase db = dbHelperSP.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("tendangnhap", nd.getTaikhoan());
+        contentValues.put("matkhau", nd.getMatkhau());
+
+        long check = db.insert("nguoidung", null, contentValues);
+
+        return check != 1;
     }
 
     public void xoasp(int id){

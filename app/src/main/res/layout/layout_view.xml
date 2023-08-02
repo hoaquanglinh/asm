@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:text="chỉnh sửa"
                 android:textAllCaps="false"
-                android:background="@color/white"
+                android:background="@null"
                 android:textColor="#E53935"/>
             <Button
                 android:id="@+id/xoa"
@@ -67,9 +67,9 @@
                 android:layout_height="wrap_content"
                 android:text="xóa"
                 android:textAllCaps="false"
-                android:background="@color/white"
+                android:background="@null"
                 android:textColor="#039BE5"
-                android:layout_marginLeft="30dp"/>
+                android:layout_marginLeft="20dp"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -113,7 +113,7 @@ public class AdapterSP extends RecyclerView.Adapter<ViewHolder> {
             Double giasp = Double.parseDouble(udgiasp.getText().toString());
             int soluong = Integer.parseInt(udsoluong.getText().toString());
 
-            SanPham sp1 = new SanPham(tensp, giasp, soluong);
+            SanPham sp1 = new SanPham(sp.getId(), tensp, giasp, soluong);
 
             daoSP.suasp(sp1);
             list.clear();

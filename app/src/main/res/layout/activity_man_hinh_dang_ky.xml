@@ -10,9 +10,9 @@
     <ImageButton
         android:id="@+id/btnback"
         android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:src="@drawable/back"
-        android:background="@color/white"/>
+        android:background="null"/>
     <TextView
         android:layout_marginTop="40dp"
         android:layout_width="wrap_content"
@@ -34,7 +34,8 @@
         android:id="@+id/dkusename"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@drawable/vien"/>
+        android:background="@drawable/vien"
+        android:padding="10dp"/>
 
     <TextView
         android:layout_marginTop="10dp"
@@ -48,7 +49,8 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@drawable/vien"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:padding="10dp"/>
 
     <Button
         android:layout_marginTop="25dp"
