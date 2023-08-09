@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.assignment_ph43159.Adapter.AdapterSP;
 import com.example.assignment_ph43159.DAO.DaoSP;
@@ -78,19 +79,38 @@ public class ManHinhQLSP extends Fragment {
                 String giasp = addgiasp.getText().toString();
                 String soluong = addsoluong.getText().toString();
 
-                SanPham sp1 = new SanPham(tensp, Double.parseDouble(giasp), Integer.parseInt(soluong));
-//                sp.setTensp(tensp);
-//                sp.setGiasp(Double.parseDouble(giasp));
-//                sp.setSoluong(Integer.parseInt(soluong));
+                if(tensp.isEmpty()||giasp.isEmpty()||soluong.isEmpty()){
+                    Toast.makeText(getContext(), "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                } else{
+                    double gia;
+                    int soLuong;
+                    try {
+                        gia = Double.parseDouble(giasp);
+                        soLuong = Integer.parseInt(soluong);
+                    } catch (Exception e) {
+                        Toast.makeText(getContext(), "Giá và số lượng sản phẩm phải là số", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
-                daosp.themsp(sp1);
-                list.clear();
-                list.addAll(daosp.danhsach());
-                adapter.notifyDataSetChanged();
+                    if (gia <= 0) {
+                        Toast.makeText(getContext(), "Giá sản phẩm phải là số dương", Toast.LENGTH_SHORT).show();
+                    }
 
-                dialog.dismiss();
+                    if (soLuong <= 0) {
+                        Toast.makeText(getContext(), "Số lượng sản phẩm phải là số dương", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                    SanPham sp = new SanPham(tensp, Double.parseDouble(giasp), Integer.parseInt(soluong));
+
+                    daosp.themsp(sp);
+                    list.clear();
+                    list.addAll(daosp.danhsach());
+                    adapter.notifyDataSetChanged();
+                    dialog.dismiss();
+                }
             }
         });
-
     }
+
 }

@@ -50,29 +50,6 @@ public class DaoSP {
         return list;
     }
 
-    public ArrayList<NguoiDung> taikhoan(){
-        ArrayList<NguoiDung> list = new ArrayList<>();
-        SQLiteDatabase db = dbHelperSP.getWritableDatabase();
-        try{
-            Cursor cursor = db.rawQuery("select * from nguoidung", null);
-            if(cursor.getCount()>0){
-                cursor.moveToFirst();
-                while (!cursor.isAfterLast()){
-                    list.add(new NguoiDung(
-                            cursor.getInt(0),
-                            cursor.getString(1),
-                            cursor.getString(2),
-                            cursor.getString(3)
-                    ));
-                    cursor.moveToNext();
-                }
-            }
-        }catch (Exception e){
-            Log.i(TAG,"Lỗi", e);
-        }
-        return list;
-    }
-
     public boolean themnd(NguoiDung nd){
         SQLiteDatabase db = dbHelperSP.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -91,6 +68,7 @@ public class DaoSP {
 
 //        long check = db.delete("sanphamm", "tensp = ? OR tensp IS NULL", new String[]{""});
         long check = db.delete("sanphamm", "id = ?", new String[]{String.valueOf(id)});
+
         if (check > 0){
             Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
         }else{
@@ -130,5 +108,27 @@ public class DaoSP {
                     Toast.LENGTH_SHORT).show();
         else Toast.makeText(context, "Sửa thất bại",
                 Toast.LENGTH_SHORT).show();
+    }
+    public ArrayList<NguoiDung> taikhoan(){
+        ArrayList<NguoiDung> list = new ArrayList<>();
+        SQLiteDatabase db = dbHelperSP.getWritableDatabase();
+        try{
+            Cursor cursor = db.rawQuery("select * from nguoidung", null);
+            if(cursor.getCount()>0){
+                cursor.moveToFirst();
+                while (!cursor.isAfterLast()){
+                    list.add(new NguoiDung(
+                            cursor.getInt(0),
+                            cursor.getString(1),
+                            cursor.getString(2),
+                            cursor.getString(3)
+                    ));
+                    cursor.moveToNext();
+                }
+            }
+        }catch (Exception e){
+            Log.i(TAG,"Lỗi", e);
+        }
+        return list;
     }
 }

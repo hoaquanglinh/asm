@@ -17,6 +17,7 @@ public class DBHelperSP extends SQLiteOpenHelper {
         super(context, "QLSPND", null, 1);
     }
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table nguoidung(id integer primary key autoincrement, tendangnhap text, matkhau text, hoten text)");

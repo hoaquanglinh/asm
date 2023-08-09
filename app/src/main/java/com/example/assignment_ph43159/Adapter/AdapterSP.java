@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -110,16 +111,40 @@ public class AdapterSP extends RecyclerView.Adapter<ViewHolder> {
 
         convertView.findViewById(R.id.btnupdate).setOnClickListener(v -> {
             String tensp = udtensp.getText().toString();
-            Double giasp = Double.parseDouble(udgiasp.getText().toString());
-            int soluong = Integer.parseInt(udsoluong.getText().toString());
+            String giasp = udgiasp.getText().toString();
+            String soluong = udsoluong.getText().toString();
 
-            SanPham sp1 = new SanPham(sp.getId(), tensp, giasp, soluong);
 
-            daoSP.suasp(sp1);
-            list.clear();
-            list.addAll(daoSP.danhsach());
-            notifyDataSetChanged();
-            dialog.dismiss();
+
+            if(tensp.isEmpty()||String.valueOf(giasp).isEmpty()||String.valueOf(soluong).isEmpty()){
+                Toast.makeText(context, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            }else{
+                double gia;
+                int soLuong;
+                try {
+                    gia = Double.parseDouble(giasp);
+                    soLuong = Integer.parseInt(soluong);
+                } catch (Exception e) {
+                    Toast.makeText(context, "Giá và số lượng sản phẩm phải là số", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (gia <= 0) {
+                    Toast.makeText(context, "Giá sản phẩm phải là số dương", Toast.LENGTH_SHORT).show();
+                }
+
+                if (soLuong <= 0) {
+                    Toast.makeText(context, "Số lượng sản phẩm phải là số dương", Toast.LENGTH_SHORT).show();
+                }
+
+                SanPham sp1 = new SanPham(sp.getId(), tensp, Double.parseDouble(giasp), Integer.parseInt(soluong));
+
+                daoSP.suasp(sp1);
+                list.clear();
+                list.addAll(daoSP.danhsach());
+                notifyDataSetChanged();
+                dialog.dismiss();
+            }
         });
     }
 }

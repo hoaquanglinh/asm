@@ -12,7 +12,7 @@
         android:layout_width="50dp"
         android:layout_height="45dp"
         android:src="@drawable/back"
-        android:background="null"/>
+        android:background="@null"/>
     <TextView
         android:layout_marginTop="40dp"
         android:layout_width="wrap_content"
