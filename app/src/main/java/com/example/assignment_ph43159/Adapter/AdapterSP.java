@@ -114,8 +114,6 @@ public class AdapterSP extends RecyclerView.Adapter<ViewHolder> {
             String giasp = udgiasp.getText().toString();
             String soluong = udsoluong.getText().toString();
 
-
-
             if(tensp.isEmpty()||String.valueOf(giasp).isEmpty()||String.valueOf(soluong).isEmpty()){
                 Toast.makeText(context, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             }else{
